@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./confetti.js"></script>
+  <title>点名小程序</title>
+
+  <style>
+    *{
+      font-size: 100px;
+      margin: 0;
+      padding: 0;
+      
+    }
+    html,body{width: 100%;height: 100%;display: flex;flex-direction: column;justify-content: space-around;align-items: center;}
+    button{
+      border-radius: 15px;
+      background-color: transparent;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>向阳一部点名小程序</h1>
+  <button class="animate__animated animate__flash">开始点名</button>
+  <div class="animate__animated animate__bounce">幸运选手是:<span class="animate__animated animate__bounce"></span></div>
+  <link rel="stylesheet" href="./animation.css">
+  <script>
+    const jsConfetti = new JSConfetti()
+    document.querySelector("button").addEventListener("click", () => {
+      clickRandom()
+    })
+    const addFire = (i=1)=>{
+      console.log(i);
+      for(i;i>0;i--){
+        jsConfetti.addConfetti()
+      }
+    }
+    addFire()
+    function clickRandom() {
+      let arr = [ "李朋洋", "陈开发", "李正园", "李鑫龙", "郝敏富","沈开仓", "张馨元", "鲁国斌",
+        "孙震宇", "唐利发", "李树林", "刘金倩", "彭景新", "刘紫琪", "韩永昌", "杨鑫", "王方慧", 
+        "朱文明", "安云龙", "陈阔阔", "闫亚琛", "郑修帅", "张宇杰", "苟炳雪", "苏子豪", "宫一聪", 
+        "闫文慧",
+        "段红羽","刘浩洋","王舒怡","杨迎娜","张迪","吕灿雨","李新宇","张琮", "杨路璞", "姜世瑾", 
+        "王慧明", "赵启然","张嘉豪","孟竹", 
+        "马腾飞", "蒋龙治", "张小龙", "赵小龙","张云昊","郭禹君", "俞峰", "周江帆", "王斯诺", 
+        "邬洪明","欧阳琛","高琨", "郝倩", 
+        "王涛", "王龙伟","孔德骏","张翔益", "王福平", "司延洁", "鹿丽君", "王资晴","谷世杰",
+        "杨宣琪","阎佳霖","翟电兴","段胜男","谭钰莹","张洁","孙公朴","成慧萍","张资祥","袁鑫","关祥宇",
+        "段宇翔","周单单","徐锦虎","张尚策","姜文壮","文萍","刘聪慧","张盛迪","刘志威","张世豪","刘苗",
+        "巩乐天","张希宇","范光惕","张英健","张月","李冰","马嘉宁","庞广阁","柳靖宇"
+      ]
+      let span = document.querySelector("span")
+      let random = Math.floor(Math.random() * arr.length)
+      let timers = []
+      for (let i = 0; i <= random; i++) {
+        let timer = setTimeout(() => {
+          span.className = "animate__animated animate__tada"
+          span.innerHTML = arr[i]
+          span.className = ""
+          if (i === random) {
+            span.className = "animate__animated animate__flipInX"
+            span.innerHTML = arr[i] + "!!!!"
+            timers.forEach(item => {
+              clearTimeout(item)
+            })
+            addFire(10)
+            
+            return
+          }
+        }, 50 * i)
+        timers.push(timer)
+      }
+    }
+  </script>
+</body>
+
+</html>
