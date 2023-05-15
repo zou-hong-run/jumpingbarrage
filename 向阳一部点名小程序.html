@@ -16,9 +16,25 @@
       
     }
     html,body{width: 100%;height: 100%;display: flex;flex-direction: column;justify-content: space-around;align-items: center;}
+    h1{
+      background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    span{
+      background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
     button{
+      font-size: 50px;
       border-radius: 15px;
-      background-color: transparent;
+      /* background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff);
+      background-clip: text;
+      -webkit-background-clip: text; */
+      /* -webkit-text-fill-color: transparent; */
     }
 
   </style>
@@ -27,8 +43,11 @@
 <body>
 
   <h1>向阳一部点名小程序</h1>
+  
+  <div class="animate__animated animate__bounce">
+    幸运选手:<span class="animate__animated animate__bounce"></span>
+  </div>
   <button class="animate__animated animate__flash">开始点名</button>
-  <div class="animate__animated animate__bounce">幸运选手是:<span class="animate__animated animate__bounce"></span></div>
   <link rel="stylesheet" href="./animation.css">
   <script>
     const jsConfetti = new JSConfetti()
@@ -36,9 +55,10 @@
       clickRandom()
     })
     const addFire = (i=1)=>{
-      console.log(i);
       for(i;i>0;i--){
-        jsConfetti.addConfetti()
+        setTimeout(()=>{
+          jsConfetti.addConfetti()
+        },i*500)
       }
     }
     addFire()
@@ -70,7 +90,7 @@
             timers.forEach(item => {
               clearTimeout(item)
             })
-            addFire(10)
+            addFire(12)
             
             return
           }
